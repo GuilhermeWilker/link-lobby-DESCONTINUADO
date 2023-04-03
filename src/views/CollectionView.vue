@@ -1,10 +1,10 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import Collections from "../components/Collections.vue";
 </script>
 
 <template>
   <main>
-    <h3>HOME</h3>
+    <Collections />
   </main>
 </template>
 

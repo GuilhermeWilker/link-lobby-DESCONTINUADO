@@ -2,16 +2,16 @@
 import { ref } from "vue";
 
 const isModalOpen = ref(false);
-const inputValue = ref("");
-const collections = ref([]);
 
 function openModal() {
   isModalOpen.value = true;
 }
-
 function closeModal() {
   isModalOpen.value = false;
 }
+
+const inputValue = ref("");
+const collections = ref([]);
 
 function createCollection() {
   if (!inputValue.value) {
@@ -52,19 +52,6 @@ function createCollection() {
           Mantenha seus links ainda mais organizados criando coleções, separando
           por categoria os seus interesses..
         </p>
-      </div>
-
-      <div class="collection">
-        <img src="/images/icons/folder-icon.png" />
-        <p>Coleção de Artigos</p>
-      </div>
-      <div class="collection">
-        <img src="/images/icons/folder-icon.png" />
-        <p>Coleção de Artigos</p>
-      </div>
-      <div class="collection">
-        <img src="/images/icons/folder-icon.png" />
-        <p>Coleção de Artigos</p>
       </div>
 
       <div
