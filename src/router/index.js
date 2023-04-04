@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import("../views/CollectionView.vue"),
     },
     {
+      path: "/collection/:index",
+      component: () => import("../views/LinksView.vue"),
+      props: true,
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting

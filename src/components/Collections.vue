@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { RouterLink } from "vue-router";
 
 const isModalOpen = ref(false);
 
@@ -13,6 +14,22 @@ function closeModal() {
 const inputValue = ref("");
 const collections = ref([]);
 
+function loadCollectionsFromStorage() {
+  const collectionFromStorage = localStorage.getItem("collections");
+  if (collectionFromStorage) {
+    try {
+      collections.value = JSON.parse(collectionFromStorage);
+    } catch (e) {
+      console.log("Erro ao analisar JSON das coleções armazenadas: ", e);
+      localStorage.removeItem("collections");
+    }
+  }
+}
+
+onMounted(() => {
+  loadCollectionsFromStorage();
+});
+
 function createCollection() {
   if (!inputValue.value) {
     alert("O valor do input não pode estar vazio!");
@@ -21,6 +38,8 @@ function createCollection() {
   collections.value.push(inputValue.value);
   inputValue.value = "";
   closeModal();
+
+  localStorage.setItem("collections", JSON.stringify(collections.value));
 }
 </script>
 
@@ -54,13 +73,11 @@ function createCollection() {
         </p>
       </div>
 
-      <div
-        v-for="(collection, index) in collections"
-        :key="index"
-        class="collection"
-      >
-        <img src="/images/icons/folder-icon.png" />
-        <p>{{ collection }}</p>
+      <div v-for="(collection, index) in collections" :key="index">
+        <router-link :to="'/collection/' + index" class="collection">
+          <img src="/images/icons/folder-icon.png" />
+          <p>{{ collection }}</p>
+        </router-link>
       </div>
     </aside>
   </main>
