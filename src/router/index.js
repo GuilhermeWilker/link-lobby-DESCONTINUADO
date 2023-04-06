@@ -1,15 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { supabase } from "../supabase";
-import HomeView from "../views/HomeView.vue";
 
-const requireAuth = (to, from, next) => {
-  const user = supabase.auth.user();
-  if (!user) {
-    next({ name: "home" });
-  } else {
-    next();
-  }
-};
+import HomeView from "../views/HomeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,12 +14,21 @@ const router = createRouter({
       path: "/collections",
       name: "collections",
       component: () => import("../views/CollectionView.vue"),
-      beforeEnter: requireAuth,
     },
     {
       path: "/collection/:index",
       component: () => import("../views/LinksView.vue"),
       props: true,
+    },
+    {
+      name: "register",
+      path: "/register",
+      component: () => import("../views/RegisterView.vue"),
+    },
+    {
+      name: "login",
+      path: "/login",
+      component: () => import("../views/LoginView.vue"),
     },
     {
       path: "/about",

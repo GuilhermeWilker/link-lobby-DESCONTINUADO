@@ -9,7 +9,7 @@ const state = reactive({
 
 const authenticate = async () => {
   try {
-    const { user, session, error } = await supabase.auth.session();
+    const { user, session, error } = await supabase.auth.getSession();
     if (error) throw error;
     state.user = user;
     state.session = session;
@@ -20,7 +20,7 @@ const authenticate = async () => {
 
 const signIn = async (email, password) => {
   try {
-    const { user, error } = await supabase.auth.signInWithPassword({
+    const { user, error } = await supabase.auth.signIn({
       email,
       password,
     });

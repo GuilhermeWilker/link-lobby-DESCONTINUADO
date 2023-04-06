@@ -1,5 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
+import { supabase } from "./supabase";
+
+const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+};
 </script>
 
 <template>
@@ -8,6 +13,7 @@ import { RouterLink, RouterView } from "vue-router";
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/collections">Criar coleções</RouterLink>
+        <button @click="signOut">Deslogar</button>
       </nav>
     </div>
   </header>
@@ -37,6 +43,6 @@ nav {
   font-size: 16px;
   font-weight: 700;
   text-align: center;
-  gap: 320px;
+  gap: 150px;
 }
 </style>
