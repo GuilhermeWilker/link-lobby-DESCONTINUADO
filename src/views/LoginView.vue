@@ -33,18 +33,32 @@ const handleSubmit = async () => {
     <main>
       <section class="hero">
         <h4 class="subtitle">O melhor lugar para salvar links de</h4>
-        <h1 class="title">ARTIGOS</h1>
+        <h1 class="title">
+          <span>ARTIGOS</span>
+          <span>VIDEOS</span>
+          <span>PODCASTS</span>
+          <span>SITES</span>
+          <span>ARTIGOS</span>
+        </h1>
       </section>
       <form class="form" @submit.prevent="handleSubmit">
         <h2>Comece gerenciar seus links e sem perde-los de vista!</h2>
 
         <div class="email_input">
           <label>Email </label>
-          <input type="email" v-model="form.email" />
+          <input
+            type="email"
+            v-model="form.email"
+            placeholder="joabmanoel@email.com"
+          />
         </div>
         <div class="senha_input">
           <label>Senha </label>
-          <input type="password" v-model="form.password" />
+          <input
+            type="password"
+            v-model="form.password"
+            placeholder="********"
+          />
         </div>
 
         <div class="cadastre-se">
@@ -97,6 +111,22 @@ p {
   font-weight: 800;
   font-size: 110px;
   font-family: "Montserrat", sans-serif;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  height: 115px;
+  overflow-y: hidden;
+}
+
+.title span {
+  display: block;
+  height: 120px;
+
+  margin-inline: auto;
+
+  animation: spin_words ease-in-out 6s infinite;
 }
 .form {
   margin-inline: auto;
