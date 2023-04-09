@@ -1,9 +1,11 @@
 <script setup>
 import Collections from "../components/Collections.vue";
+import Navbar from "../components/Navbar.vue";
 </script>
 
 <template>
   <main>
+    <Navbar />
     <Collections />
   </main>
 </template>

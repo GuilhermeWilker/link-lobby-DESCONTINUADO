@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { supabase } from "../supabase";
-import { useRouter } from "vue-router";
+import { useRouter, RouterLink } from "vue-router";
 
 const erro_message = ref(false);
 const router = useRouter();
@@ -30,58 +30,149 @@ const handleSubmit = async () => {
 </script>
 <template>
   <div>
-    <form class="form" @submit.prevent="handleSubmit">
-      <h1>Login de usuário</h1>
+    <main>
+      <section class="hero">
+        <h4 class="subtitle">O melhor lugar para salvar links de</h4>
+        <h1 class="title">ARTIGOS</h1>
+      </section>
+      <form class="form" @submit.prevent="handleSubmit">
+        <h2>Comece gerenciar seus links e sem perde-los de vista!</h2>
 
-      <label>Email </label>
-      <input type="email" v-model="form.email" />
-      <label>Senha </label>
-      <input type="password" v-model="form.password" />
-      <button type="submit">Login</button>
+        <div class="email_input">
+          <label>Email </label>
+          <input type="email" v-model="form.email" />
+        </div>
+        <div class="senha_input">
+          <label>Senha </label>
+          <input type="password" v-model="form.password" />
+        </div>
 
-      <p v-if="erro_message">Usuário não existe!!</p>
-    </form>
+        <div class="cadastre-se">
+          <router-link to="/register">
+            Não possui conta? <span>Cadastre-se aqui!</span>
+          </router-link>
+        </div>
+
+        <button type="submit">Login</button>
+        <p v-if="erro_message">Usuário não existe!!</p>
+      </form>
+    </main>
   </div>
 </template>
 
 <style scoped>
 div {
-  margin: 120px auto;
-  width: 500px;
+  margin: 0 auto;
+  width: 100%;
 }
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 p {
+  margin: 8px 0;
   color: red;
 }
 
+.hero {
+  background-color: #e9e9e9;
+  width: 720px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 110px;
+  font-family: "Montserrat", sans-serif;
+}
 .form {
   margin-inline: auto;
   display: flex;
   flex-direction: column;
 
-  border-radius: 8px;
-  border: 1px solid black;
   padding: 25px;
 
-  width: 350px;
+  width: 390px;
 }
 
-.form h1 {
-  text-align: center;
+.form h2 {
+  margin-bottom: 25px;
+  font-size: 25px;
 }
 
-.form label {
+.form .email_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.form .email_input label {
   font-weight: 600;
 }
 
-.form input {
-  padding: 5px;
+.form .email_input input {
+  padding: 12px 8px;
+
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.form .senha_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.form .senha_input label {
+  font-weight: 600;
+}
+
+.form .senha_input input {
+  padding: 12px 8px;
+
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+.cadastre-se {
   margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  color: #a5a5a5;
+}
+
+.cadastre-se span {
+  text-decoration: underline;
 }
 
 .form button {
+  cursor: pointer;
   height: 50px;
-  width: 150px;
+  width: 100%;
 
+  background-color: #141313;
+  border: 1px solid #141313;
+  color: #fff;
+
+  font-weight: 600;
   margin-inline: auto;
+}
+
+.form button:hover {
+  background-color: #2e2d2d;
 }
 </style>
