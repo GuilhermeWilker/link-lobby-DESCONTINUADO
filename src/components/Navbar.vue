@@ -1,9 +1,13 @@
 <script setup>
-import { RouterLink } from "vue-router";
-import { supabase } from "../supabase";
+import { RouterLink, useRouter } from "vue-router";
+import auth from "../composable/auth";
+
+const router = useRouter();
 
 const signOut = async () => {
-  const { error } = await supabase.auth.signOut();
+  // const { error } = await supabase.auth.signOut();
+  auth.signOut();
+  router.push("/");
 };
 </script>
 

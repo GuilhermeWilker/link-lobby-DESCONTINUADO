@@ -90,7 +90,8 @@ main {
 }
 
 .hero {
-  background-color: #e9e9e9;
+  background-image: url(/images/pic/Gradient.png);
+  background-size: cover;
   width: 720px;
   height: 100vh;
 
